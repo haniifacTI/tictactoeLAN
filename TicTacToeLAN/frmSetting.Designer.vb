@@ -25,7 +25,7 @@ Partial Class frmSetting
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtIp = New System.Windows.Forms.TextBox()
         Me.btnConnect = New System.Windows.Forms.Button()
         Me.btnHost = New System.Windows.Forms.Button()
         Me.lblState = New System.Windows.Forms.Label()
@@ -58,13 +58,13 @@ Partial Class frmSetting
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "OR"
         '
-        'TextBox1
+        'txtIp
         '
-        Me.TextBox1.Location = New System.Drawing.Point(62, 75)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(235, 27)
-        Me.TextBox1.TabIndex = 3
+        Me.txtIp.Location = New System.Drawing.Point(62, 75)
+        Me.txtIp.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtIp.Name = "txtIp"
+        Me.txtIp.Size = New System.Drawing.Size(235, 27)
+        Me.txtIp.TabIndex = 3
         '
         'btnConnect
         '
@@ -103,12 +103,13 @@ Partial Class frmSetting
         Me.Controls.Add(Me.lblState)
         Me.Controls.Add(Me.btnHost)
         Me.Controls.Add(Me.btnConnect)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtIp)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmSetting"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Setting"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -118,7 +119,7 @@ Partial Class frmSetting
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtIp As TextBox
     Friend WithEvents btnConnect As Button
     Friend WithEvents btnHost As Button
     Friend WithEvents lblState As Label

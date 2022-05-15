@@ -16,3 +16,21 @@ C:\Users\Haniif\source\repos\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\
 C:\Users\Haniif\source\repos\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\ref\TicTacToeLAN.dll
 C:\Users\Haniif\source\repos\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.pdb
 C:\Users\Haniif\source\repos\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.genruntimeconfig.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.exe
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.deps.json
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.runtimeconfig.json
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.dll
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.pdb
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.AssemblyReference.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.frmMain.resources
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.frmSetting.resources
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.GenerateResource.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.GeneratedMSBuildEditorConfig.editorconfig
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.AssemblyInfoInputs.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.AssemblyInfo.vb
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.CoreCompileInputs.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.dll
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\refint\TicTacToeLAN.dll
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.pdb
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.genruntimeconfig.cache
+D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\ref\TicTacToeLAN.dll
