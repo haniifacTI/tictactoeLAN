@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c607438f-d7ee-4564-b36c-137ff56f8f97": {
+      "ProjectGuid": "c607438f-d7ee-4564-b36c-137ff56f8f97",
+      "DisplayName": "TicTacToeLAN",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
