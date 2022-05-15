@@ -22,6 +22,7 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JoinOrHostGameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -192,6 +193,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.btn2)
         Me.Controls.Add(Me.btn1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmMain"

@@ -14,7 +14,14 @@ Public Class frmSetting
         Dim port As Integer = 8083
         udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
         Dim sendBytes As Byte()
-        sendBytes = Encoding.ASCII.GetBytes("Connect to server")
+        sendBytes = Encoding.ASCII.GetBytes("Connected to game")
         udpClient.Send(sendBytes, sendBytes.Length)
+        frmMain.connect = True
+        frmMain.ipConnect = txtIp.Text
+        frmMain.ShowDialog()
+    End Sub
+
+    Private Sub frmSetting_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        End
     End Sub
 End Class
