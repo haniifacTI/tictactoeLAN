@@ -23,7 +23,7 @@ Public Class frmMain
                 MsgBox("Draw" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
                 playAgain()
             End If
-            'statusPemain = "P2"
+            statusPemain = "P2"
             lblStatus.Text = "Giliran P1"
             giliran = "P2"
         End If
@@ -53,9 +53,10 @@ Public Class frmMain
         thdUDPServer.Start()
 
         If connect = True Then
+            statusPemain = "P!"
             lblStatus.Text = "Giliran Lawan"
             Panel1.BackColor = Color.Red
-            disableBtn()
+            'disableBtn()
         End If
     End Sub
 
