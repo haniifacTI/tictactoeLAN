@@ -53,7 +53,7 @@ Public Class frmMain
         thdUDPServer.Start()
 
         If connect = True Then
-            statusPemain = "P!"
+            statusPemain = "P1"
             lblStatus.Text = "Giliran Lawan"
             Panel1.BackColor = Color.Red
             'disableBtn()
