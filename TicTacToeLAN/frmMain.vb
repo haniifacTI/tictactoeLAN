@@ -36,7 +36,7 @@ Public Class frmMain
             End If
         End If
 
-        'disableBtn()
+        disableBtn()
     End Sub
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
         frmSetting.Show()
@@ -88,10 +88,9 @@ Public Class frmMain
                 Case "btn9"
                     isi(btn9)
                 Case Else
-                    MsgBox(returnData)
                     ipConnect = returnData
             End Select
-
+            enableBtn()
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
            returnData.ToString())
         End While
@@ -196,15 +195,33 @@ Public Class frmMain
     End Sub
 
     Private Sub enableBtn()
-        btn1.Enabled = True
-        btn2.Enabled = True
-        btn3.Enabled = True
-        btn4.Enabled = True
-        btn5.Enabled = True
-        btn6.Enabled = True
-        btn7.Enabled = True
-        btn8.Enabled = True
-        btn9.Enabled = True
+        If btn1.Text = "" Then
+            btn1.Enabled = True
+        End If
+        If btn2.Text = "" Then
+            btn2.Enabled = True
+        End If
+        If btn3.Text = "" Then
+            btn3.Enabled = True
+        End If
+        If btn4.Text = "" Then
+            btn4.Enabled = True
+        End If
+        If btn5.Text = "" Then
+            btn5.Enabled = True
+        End If
+        If btn6.Text = "" Then
+            btn6.Enabled = True
+        End If
+        If btn7.Text = "" Then
+            btn7.Enabled = True
+        End If
+        If btn8.Text = "" Then
+            btn8.Enabled = True
+        End If
+        If btn9.Text = "" Then
+            btn9.Enabled = True
+        End If
     End Sub
 
     Private Sub disableBtn()
