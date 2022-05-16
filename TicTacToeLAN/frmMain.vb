@@ -34,6 +34,7 @@ Public Class frmMain
             statusPemain = "P1"
             lblStatus.Text = "Giliran Mu"
         End If
+        btn.Enabled = False
     End Sub
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
         frmSetting.Show()
@@ -45,7 +46,8 @@ Public Class frmMain
 
         If connect = True Then
             lblStatus.Text = "Giliran Lawan"
-            disableBtn()
+            statusPemain = "P2"
+            'disableBtn()
         End If
     End Sub
 
@@ -60,6 +62,8 @@ Public Class frmMain
     Public Sub serverThread()
         If connect = False Then
             udpClient = New UdpClient(8083)
+        Else
+            udpClient = New UdpClient()
         End If
         Dim nameBtnClicked As String = ""
 
@@ -68,7 +72,8 @@ Public Class frmMain
             Dim receiveBytes As Byte()
             Try
                 receiveBytes = udpClient.Receive(RemoteIpEndPoint)
-            Catch
+            Catch ex As Exception
+                MsgBox("Nothing")
                 Continue While
             End Try
             Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
@@ -82,9 +87,12 @@ Public Class frmMain
     End Sub
 
     Private Sub sendButton(btn As String)
+        If String.IsNullOrEmpty(ipConnect) Then
+            ipConnect = "127.0.0.1"
+        End If
         Dim udpClient As New Sockets.UdpClient
         Dim port As Integer = 8083
-        udpClient.Connect("127.0.0.1", port)
+        udpClient.Connect(ipConnect, port)
         'udpClient.Connect(IPAddress.Parse(ipConnect), port)
         Dim sendBytes As Byte()
         sendBytes = Encoding.ASCII.GetBytes(btn)

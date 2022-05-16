@@ -10,12 +10,12 @@ Public Class frmSetting
     End Sub
 
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
-        Dim udpClient As New Sockets.UdpClient
-        Dim port As Integer = 8083
-        udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
-        Dim sendBytes As Byte()
-        sendBytes = Encoding.ASCII.GetBytes("Connected to game")
-        udpClient.Send(sendBytes, sendBytes.Length)
+        'Dim udpClient As New Sockets.UdpClient
+        'Dim port As Integer = 8083
+        'udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
+        'Dim sendBytes As Byte()
+        'sendBytes = Encoding.ASCII.GetBytes("Connected to game")
+        'udpClient.Send(sendBytes, sendBytes.Length)
         frmMain.connect = True
         frmMain.ipConnect = txtIp.Text
         Me.Hide()
