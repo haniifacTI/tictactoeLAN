@@ -3,9 +3,8 @@ Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
 Public Class frmMain
-    Public statusPemain As String
-    Public giliran As String = "P1"
-
+    Public statusPemain As String = "P1"
+    'Public giliran As String = "P1"
     Dim udpClient As UdpClient
     Public connect As Boolean = False
     Public ipConnect As String = "192.168.0.104"
@@ -16,30 +15,25 @@ Public Class frmMain
 
         If statusPemain = "P1" Then
             btn.Text = "X"
-            If cekWin("X") Then
-                MsgBox("Player 1 Win!" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
-                playAgain()
-            ElseIf cekDraw() Then
-                MsgBox("Draw" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
-                playAgain()
-            End If
             statusPemain = "P2"
-            lblStatus.Text = "Giliran P1"
-            giliran = "P2"
-        End If
-
-        If statusPemain = "P2" Then
-            btn.Text = "O"
-            If cekWin("O") Then
-                MsgBox("Player 2 Win!" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
-                playAgain()
-            ElseIf cekDraw() Then
-                MsgBox("Draw" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
-                playAgain()
-            End If
-            statusPemain = "P1"
             lblStatus.Text = "Giliran P2"
+            If cekWin("X") Then
+                playAgain("Player 1 Win!" & vbCrLf & "Play again?")
+            ElseIf cekDraw() Then
+                playAgain("Draw" & vbCrLf & "Play again?")
+            End If
+
+        ElseIf statusPemain = "P2" Then
+            btn.Text = "O"
+            statusPemain = "P1"
+            lblStatus.Text = "Giliran P1"
             Panel1.BackColor = Color.LimeGreen
+            If cekWin("O") Then
+                playAgain("Player 2 Win!" & vbCrLf & "Play again?")
+            ElseIf cekDraw() Then
+                playAgain("Draw" & vbCrLf & "Play again?")
+            End If
+
         End If
 
         'disableBtn()
@@ -53,7 +47,6 @@ Public Class frmMain
         thdUDPServer.Start()
 
         If connect = True Then
-            statusPemain = "P1"
             lblStatus.Text = "Giliran Lawan"
             Panel1.BackColor = Color.Red
             'disableBtn()
@@ -99,30 +92,6 @@ Public Class frmMain
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
            returnData.ToString())
         End While
-
-
-
-        'If connect = False Then
-        '    udpClient = New UdpClient(CInt(port))
-        'End If
-        'Dim nameBtnClicked As String = ""
-
-        'While True
-        '    Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
-        '    Dim receiveBytes As Byte()
-        '    Try
-        '        receiveBytes = udpClient.Receive(RemoteIpEndPoint)
-        '    Catch
-        '        Continue While
-        '    End Try
-        '    Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
-        '    nameBtnClicked = returnData
-        '    UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + " : " & returnData.ToString())
-        'End While
-
-        'Dim btnClicked As Button = DirectCast(Controls(nameBtnClicked), Button)
-        'enableBtn()
-        'isi(btnClicked)
     End Sub
 
     Private Sub sendButton(btn As String) 'BUAT SEND
@@ -134,57 +103,48 @@ Public Class frmMain
     End Sub
 
     Private Sub btn1_Click(sender As Object, e As EventArgs) Handles btn1.Click
-        isi(btn1)
-        'sendButton(btn1)
         sendButton("btn1")
+        isi(btn1)
     End Sub
 
     Private Sub btn2_Click(sender As Object, e As EventArgs) Handles btn2.Click
-        isi(btn2)
-        'sendButton(btn2)
         sendButton("btn2")
+        isi(btn2)
     End Sub
 
     Private Sub btn3_Click(sender As Object, e As EventArgs) Handles btn3.Click
-        isi(btn3)
-        'sendButton(btn3)
         sendButton("btn3")
+        isi(btn3)
     End Sub
 
     Private Sub btn4_Click(sender As Object, e As EventArgs) Handles btn4.Click
-        isi(btn4)
-        'sendButton(btn4)
         sendButton("btn4")
+        isi(btn4)
     End Sub
 
     Private Sub btn5_Click(sender As Object, e As EventArgs) Handles btn5.Click
-        isi(btn5)
-        'sendButton(btn5)
         sendButton("btn5")
+        isi(btn5)
     End Sub
 
     Private Sub btn6_Click(sender As Object, e As EventArgs) Handles btn6.Click
-        isi(btn6)
-        'sendButton(btn6)
         sendButton("btn6")
+        isi(btn6)
     End Sub
 
     Private Sub btn7_Click(sender As Object, e As EventArgs) Handles btn7.Click
-        isi(btn7)
-        'sendButton(btn7)
         sendButton("btn7")
+        isi(btn7)
     End Sub
 
     Private Sub btn8_Click(sender As Object, e As EventArgs) Handles btn8.Click
-        isi(btn8)
-        'sendButton(btn8)
         sendButton("btn8")
+        isi(btn8)
     End Sub
 
     Private Sub btn9_Click(sender As Object, e As EventArgs) Handles btn9.Click
-        isi(btn9)
-        'sendButton(btn9)
         sendButton("btn9")
+        isi(btn9)
     End Sub
 
     Function cekWin(s As String) As Boolean
@@ -210,12 +170,13 @@ Public Class frmMain
         End If
     End Function
 
-    Private Sub playAgain()
-        If MsgBoxResult.Yes Then
-            clear()
-        ElseIf MsgBoxResult.No Then
-            MsgBox("Thank You for playing our game",, "Tic Tac Toe")
+    Private Sub playAgain(resultGame As String)
+        Dim result As DialogResult = MessageBox.Show(resultGame, "Tic Tac Toe", MessageBoxButtons.YesNo)
+        If result = DialogResult.No Then
             End
+        ElseIf result = DialogResult.Yes Then
+            clear()
+            statusPemain = "P1"
         End If
     End Sub
 

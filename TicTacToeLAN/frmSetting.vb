@@ -5,7 +5,6 @@ Public Class frmSetting
     Dim frmMain As New frmMain
 
     Private Sub btnHost_Click(sender As Object, e As EventArgs) Handles btnHost.Click
-        frmMain.statusPemain = "P1"
         Me.Hide()
         frmMain.ShowDialog()
     End Sub
@@ -18,7 +17,6 @@ Public Class frmSetting
         sendBytes = Encoding.ASCII.GetBytes("Connected to game")
         udpClient.Send(sendBytes, sendBytes.Length)
         frmMain.connect = True
-        frmMain.statusPemain = "P2"
         frmMain.ipConnect = txtIp.Text
         frmMain.portConnect = txtPort.Text
 
