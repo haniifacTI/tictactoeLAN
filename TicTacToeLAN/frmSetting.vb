@@ -18,6 +18,7 @@ Public Class frmSetting
         udpClient.Send(sendBytes, sendBytes.Length)
         frmMain.connect = True
         frmMain.ipConnect = txtIp.Text
+        Me.Hide()
         frmMain.ShowDialog()
     End Sub
 

@@ -4,7 +4,7 @@ Imports System.Text
 Imports System.Threading
 Public Class frmMain
     Dim statusPemain As String = "P1"
-    Dim udpClient As New UdpClient
+    Dim udpClient As UdpClient
     Public connect As Boolean = False
     Public ipConnect As String
 
@@ -22,7 +22,6 @@ Public Class frmMain
             End If
             statusPemain = "P2"
             lblStatus.Text = "Giliran Lawan"
-            disableBtn()
         Else
             btn.Text = "O"
             If cekWin("O") Then
@@ -34,77 +33,8 @@ Public Class frmMain
             End If
             statusPemain = "P1"
             lblStatus.Text = "Giliran Mu"
-            disableBtn()
         End If
     End Sub
-
-    Function cekWin(s As String) As Boolean
-        If (btn1.Text = s And btn2.Text = s And btn3.Text = s) Or
-            (btn4.Text = s And btn5.Text = s And btn6.Text = s) Or
-            (btn7.Text = s And btn8.Text = s And btn9.Text = s) Or
-            (btn1.Text = s And btn4.Text = s And btn7.Text = s) Or
-            (btn2.Text = s And btn5.Text = s And btn8.Text = s) Or
-            (btn3.Text = s And btn6.Text = s And btn9.Text = s) Or
-            (btn1.Text = s And btn5.Text = s And btn9.Text = s) Or
-            (btn3.Text = s And btn5.Text = s And btn7.Text = s) Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
-
-    Function cekDraw() As Boolean
-        If btn1.Text <> "" And btn2.Text <> "" And btn3.Text <> "" And btn4.Text <> "" And btn5.Text <> "" And btn6.Text <> "" And btn7.Text <> "" And btn8.Text <> "" And btn9.Text <> "" Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
-
-    Private Sub playAgain()
-        If MsgBoxResult.Yes Then
-            clear()
-        ElseIf MsgBoxResult.No Then
-            MsgBox("Thank You for playing our game",, "Tic Tac Toe")
-        End If
-    End Sub
-
-    Private Sub clear()
-        btn1.Text = ""
-        btn2.Text = ""
-        btn3.Text = ""
-        btn4.Text = ""
-        btn5.Text = ""
-        btn6.Text = ""
-        btn7.Text = ""
-        btn8.Text = ""
-        btn9.Text = ""
-    End Sub
-
-    Private Sub enableBtn()
-        btn1.Enabled = True
-        btn2.Enabled = True
-        btn3.Enabled = True
-        btn4.Enabled = True
-        btn5.Enabled = True
-        btn6.Enabled = True
-        btn7.Enabled = True
-        btn8.Enabled = True
-        btn9.Enabled = True
-    End Sub
-
-    Private Sub disableBtn()
-        btn1.Enabled = False
-        btn2.Enabled = False
-        btn3.Enabled = False
-        btn4.Enabled = False
-        btn5.Enabled = False
-        btn6.Enabled = False
-        btn7.Enabled = False
-        btn8.Enabled = False
-        btn9.Enabled = False
-    End Sub
-
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
         frmSetting.Show()
     End Sub
@@ -119,37 +49,36 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub UpdateListBox(ByVal teks As String)
+        If Me.InvokeRequired Then
+            Dim args() As String = {teks}
+            Me.Invoke(New Action(Of String)(AddressOf UpdateListBox), args)
+            lbHasil.Items.Add(teks)
+        End If
+    End Sub
+
     Public Sub serverThread()
         If connect = False Then
             udpClient = New UdpClient(8083)
         End If
-        Dim getMessage As Boolean
         Dim nameBtnClicked As String = ""
 
         While True
+            Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
+            Dim receiveBytes As Byte()
             Try
-                Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
-                Dim receiveBytes As Byte()
                 receiveBytes = udpClient.Receive(RemoteIpEndPoint)
-                Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
-                nameBtnClicked = returnData
-                If returnData.Length <> 0 Then
-                    getMessage = True
-                Else
-                    getMessage = False
-                End If
-                MsgBox(returnData.ToString(),, "Tic Tac Toe")
-            Catch ex As Exception
+            Catch
                 Continue While
             End Try
+            Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
+            nameBtnClicked = returnData
+            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + " : " & returnData.ToString())
         End While
 
-        MsgBox(getMessage)
-        If getMessage = True Then
-            Dim btnClicked As Button = DirectCast(Controls(nameBtnClicked), Button)
-            enableBtn()
-            isi(btnClicked)
-        End If
+        Dim btnClicked As Button = DirectCast(Controls(nameBtnClicked), Button)
+        enableBtn()
+        isi(btnClicked)
     End Sub
 
     Private Sub sendButton(btn As String)
@@ -224,6 +153,74 @@ Public Class frmMain
         isi(btn9)
         'sendButton(btn9)
         sendButton("btn9")
+    End Sub
+
+    Function cekWin(s As String) As Boolean
+        If (btn1.Text = s And btn2.Text = s And btn3.Text = s) Or
+            (btn4.Text = s And btn5.Text = s And btn6.Text = s) Or
+            (btn7.Text = s And btn8.Text = s And btn9.Text = s) Or
+            (btn1.Text = s And btn4.Text = s And btn7.Text = s) Or
+            (btn2.Text = s And btn5.Text = s And btn8.Text = s) Or
+            (btn3.Text = s And btn6.Text = s And btn9.Text = s) Or
+            (btn1.Text = s And btn5.Text = s And btn9.Text = s) Or
+            (btn3.Text = s And btn5.Text = s And btn7.Text = s) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Function cekDraw() As Boolean
+        If btn1.Text <> "" And btn2.Text <> "" And btn3.Text <> "" And btn4.Text <> "" And btn5.Text <> "" And btn6.Text <> "" And btn7.Text <> "" And btn8.Text <> "" And btn9.Text <> "" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Sub playAgain()
+        If MsgBoxResult.Yes Then
+            clear()
+        ElseIf MsgBoxResult.No Then
+            MsgBox("Thank You for playing our game",, "Tic Tac Toe")
+            End
+        End If
+    End Sub
+
+    Private Sub clear()
+        btn1.Text = ""
+        btn2.Text = ""
+        btn3.Text = ""
+        btn4.Text = ""
+        btn5.Text = ""
+        btn6.Text = ""
+        btn7.Text = ""
+        btn8.Text = ""
+        btn9.Text = ""
+    End Sub
+
+    Private Sub enableBtn()
+        btn1.Enabled = True
+        btn2.Enabled = True
+        btn3.Enabled = True
+        btn4.Enabled = True
+        btn5.Enabled = True
+        btn6.Enabled = True
+        btn7.Enabled = True
+        btn8.Enabled = True
+        btn9.Enabled = True
+    End Sub
+
+    Private Sub disableBtn()
+        btn1.Enabled = False
+        btn2.Enabled = False
+        btn3.Enabled = False
+        btn4.Enabled = False
+        btn5.Enabled = False
+        btn6.Enabled = False
+        btn7.Enabled = False
+        btn8.Enabled = False
+        btn9.Enabled = False
     End Sub
 
     Private Sub frmMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
