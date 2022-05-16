@@ -4,10 +4,12 @@ Imports System.Text
 Imports System.Threading
 Public Class frmMain
     Public statusPemain As String
+    Public giliran As String = "P1"
+
     Dim udpClient As UdpClient
     Public connect As Boolean = False
-    Public ipConnect As String
-    Public portConnect As String
+    Public ipConnect As String = "192.168.0.104"
+    Public portConnect As String = "8080"
 
     Sub isi(btn As Button)
         If btn.Text <> "" Then Exit Sub
@@ -21,9 +23,12 @@ Public Class frmMain
                 MsgBox("Draw" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
                 playAgain()
             End If
-            statusPemain = "P2"
-            lblStatus.Text = "Giliran Lawan"
-        Else
+            'statusPemain = "P2"
+            lblStatus.Text = "Giliran P1"
+            giliran = "P2"
+        End If
+
+        If statusPemain = "P2" Then
             btn.Text = "O"
             If cekWin("O") Then
                 MsgBox("Player 2 Win!" & vbCrLf & "Play again?", MsgBoxStyle.YesNo, "Game Over")
@@ -33,10 +38,11 @@ Public Class frmMain
                 playAgain()
             End If
             statusPemain = "P1"
-            lblStatus.Text = "Giliran Mu"
+            lblStatus.Text = "Giliran P2"
             Panel1.BackColor = Color.LimeGreen
-
         End If
+
+        'disableBtn()
     End Sub
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
         frmSetting.Show()
@@ -61,17 +67,34 @@ Public Class frmMain
         End If
     End Sub
 
-    Public Sub serverThread()
+    Public Sub serverThread() 'BUAT RECIEVE
         Dim udpClient As New UdpClient(CInt(portConnect))
         While True
             Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
             Dim receiveBytes As Byte()
             receiveBytes = udpClient.Receive(RemoteIpEndPoint)
             Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
-            If returnData = "btn1" Then
-                btn1.Text = "terkirim"
-                btn1.Enabled = False
-            End If
+            Select Case returnData
+                Case "btn1"
+                    isi(btn1)
+                Case "btn2"
+                    isi(btn2)
+                Case "btn3"
+                    isi(btn3)
+                Case "btn4"
+                    isi(btn4)
+                Case "btn5"
+                    isi(btn5)
+                Case "btn6"
+                    isi(btn6)
+                Case "btn7"
+                    isi(btn7)
+                Case "btn8"
+                    isi(btn8)
+                Case "btn9"
+                    isi(btn9)
+            End Select
+
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
            returnData.ToString())
         End While
@@ -101,7 +124,7 @@ Public Class frmMain
         'isi(btnClicked)
     End Sub
 
-    Private Sub sendButton(btn As String)
+    Private Sub sendButton(btn As String) 'BUAT SEND
         Dim udpClient As New Sockets.UdpClient
         udpClient.Connect(IPAddress.Parse(ipConnect), Val(portConnect))
         Dim sendBytes As Byte()
