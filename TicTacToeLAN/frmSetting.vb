@@ -11,10 +11,10 @@ Public Class frmSetting
 
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
         Dim udpClient As New Sockets.UdpClient
-        Dim port As Integer = 8083
+        Dim port As Integer = 8080
         udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
         Dim sendBytes As Byte()
-        sendBytes = Encoding.ASCII.GetBytes("Connected to game")
+        sendBytes = Encoding.ASCII.GetBytes(GetIPv4Address.ToString)
         udpClient.Send(sendBytes, sendBytes.Length)
         frmMain.connect = True
         frmMain.ipConnect = txtIp.Text
@@ -27,4 +27,18 @@ Public Class frmSetting
     Private Sub frmSetting_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         End
     End Sub
+
+    Private Function GetIPv4Address() As String
+        GetIPv4Address = String.Empty
+        Dim strHostName As String = System.Net.Dns.GetHostName()
+        Dim iphe As System.Net.IPHostEntry = System.Net.Dns.GetHostEntry(strHostName)
+
+        For Each ipheal As System.Net.IPAddress In iphe.AddressList
+            If ipheal.AddressFamily = System.Net.Sockets.AddressFamily.InterNetwork Then
+                GetIPv4Address = ipheal.ToString()
+            End If
+        Next
+
+        Return GetIPv4Address
+    End Function
 End Class

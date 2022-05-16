@@ -7,7 +7,8 @@ Public Class frmMain
     'Public giliran As String = "P1"
     Dim udpClient As UdpClient
     Public connect As Boolean = False
-    Public ipConnect As String = "192.168.0.104"
+    'ip client / P2
+    Public ipConnect As String
     Public portConnect As String = "8080"
 
     Sub isi(btn As Button)
@@ -33,7 +34,6 @@ Public Class frmMain
             ElseIf cekDraw() Then
                 playAgain("Draw" & vbCrLf & "Play again?")
             End If
-
         End If
 
         'disableBtn()
@@ -87,6 +87,9 @@ Public Class frmMain
                     isi(btn8)
                 Case "btn9"
                     isi(btn9)
+                Case Else
+                    MsgBox(returnData)
+                    ipConnect = returnData
             End Select
 
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
