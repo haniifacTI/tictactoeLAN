@@ -3,10 +3,11 @@ Imports System.Net.Sockets
 Imports System.Text
 Imports System.Threading
 Public Class frmMain
-    Dim statusPemain As String = "P1"
+    Public statusPemain As String
     Dim udpClient As UdpClient
     Public connect As Boolean = False
     Public ipConnect As String
+    Public portConnect As String
 
     Sub isi(btn As Button)
         If btn.Text <> "" Then Exit Sub
@@ -33,6 +34,8 @@ Public Class frmMain
             End If
             statusPemain = "P1"
             lblStatus.Text = "Giliran Mu"
+            Panel1.BackColor = Color.LimeGreen
+
         End If
     End Sub
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
@@ -45,6 +48,7 @@ Public Class frmMain
 
         If connect = True Then
             lblStatus.Text = "Giliran Lawan"
+            Panel1.BackColor = Color.Red
             disableBtn()
         End If
     End Sub
@@ -58,48 +62,52 @@ Public Class frmMain
     End Sub
 
     Public Sub serverThread()
-        If connect = False Then
-            udpClient = New UdpClient(8083)
-        End If
-        Dim nameBtnClicked As String = ""
-
+        Dim udpClient As New UdpClient(CInt(portConnect))
         While True
             Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
             Dim receiveBytes As Byte()
-            Try
-                receiveBytes = udpClient.Receive(RemoteIpEndPoint)
-            Catch
-                Continue While
-            End Try
+            receiveBytes = udpClient.Receive(RemoteIpEndPoint)
             Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
-            nameBtnClicked = returnData
-            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + " : " & returnData.ToString())
+            If returnData = "btn1" Then
+                btn1.Text = "terkirim"
+                btn1.Enabled = False
+            End If
+            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
+           returnData.ToString())
         End While
 
-        Dim btnClicked As Button = DirectCast(Controls(nameBtnClicked), Button)
-        enableBtn()
-        isi(btnClicked)
+
+
+        'If connect = False Then
+        '    udpClient = New UdpClient(CInt(port))
+        'End If
+        'Dim nameBtnClicked As String = ""
+
+        'While True
+        '    Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
+        '    Dim receiveBytes As Byte()
+        '    Try
+        '        receiveBytes = udpClient.Receive(RemoteIpEndPoint)
+        '    Catch
+        '        Continue While
+        '    End Try
+        '    Dim returnData As String = Encoding.ASCII.GetString(receiveBytes)
+        '    nameBtnClicked = returnData
+        '    UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + " : " & returnData.ToString())
+        'End While
+
+        'Dim btnClicked As Button = DirectCast(Controls(nameBtnClicked), Button)
+        'enableBtn()
+        'isi(btnClicked)
     End Sub
 
     Private Sub sendButton(btn As String)
         Dim udpClient As New Sockets.UdpClient
-        Dim port As Integer = 8083
-        udpClient.Connect("127.0.0.1", port)
-        'udpClient.Connect(IPAddress.Parse(ipConnect), port)
+        udpClient.Connect(IPAddress.Parse(ipConnect), Val(portConnect))
         Dim sendBytes As Byte()
         sendBytes = Encoding.ASCII.GetBytes(btn)
         udpClient.Send(sendBytes, sendBytes.Length)
     End Sub
-
-    'Private Sub sendButton(btn As Button)
-    '    Dim udpClient As New Sockets.UdpClient
-    '    Dim port As Integer = 8083
-    '    udpClient.Connect("127.0.0.1", port)
-    '    'udpClient.Connect(IPAddress.Parse(ipConnect), port)
-    '    Dim sendBytes As Byte()
-    '    sendBytes = Encoding.ASCII.GetBytes(btn)
-    '    udpClient.Send(sendBytes, sendBytes.Length)
-    'End Sub
 
     Private Sub btn1_Click(sender As Object, e As EventArgs) Handles btn1.Click
         isi(btn1)

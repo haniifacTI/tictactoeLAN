@@ -34,3 +34,21 @@ D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\
 D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.pdb
 D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.genruntimeconfig.cache
 D:\2. Kuliah\Semester 4\8. ProgDesk\Tugas 3\tictactoeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\ref\TicTacToeLAN.dll
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.exe
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.deps.json
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.runtimeconfig.json
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.dll
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\ref\TicTacToeLAN.dll
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\bin\Debug\net6.0-windows\TicTacToeLAN.pdb
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.AssemblyReference.cache
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.frmMain.resources
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.frmSetting.resources
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.GenerateResource.cache
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.AssemblyInfoInputs.cache
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.AssemblyInfo.vb
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.vbproj.CoreCompileInputs.cache
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.dll
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\ref\TicTacToeLAN.dll
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.pdb
+C:\Users\Haniif\source\repos\1-GIT REPOS\TicTacToeLAN\TicTacToeLAN\obj\Debug\net6.0-windows\TicTacToeLAN.genruntimeconfig.cache
