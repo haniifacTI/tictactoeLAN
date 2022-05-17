@@ -7,11 +7,19 @@ Public Class frmMain
     'Public giliran As String = "P1"
     Dim udpClient As UdpClient
     Public connect As Boolean = False
+
     'ip client / P2
-    Public ipConnect As String
-    Public portConnect As String
+    'Public ipConnect As String = "127.0.0.1"
+    'Public portConnect As String
     'Public portConnect As String = "8080"
 
+    Public receivePort As String
+    Public sendPort As String
+    Public role As String
+    Dim cekPlayAgain As Boolean = False
+    Dim p1win As Integer = 0
+    Dim p2win As Integer = 0
+    Dim highScore As String
     Sub isi(btn As Button)
         If btn.Text <> "" Then Exit Sub
 
@@ -21,9 +29,17 @@ Public Class frmMain
             lblStatus.Text = "Giliran P2"
             Panel1.BackColor = Color.Red
             If cekWin("X") Then
-                playAgain("Player 1 Win!" & vbCrLf & "Play again?")
+                p1win += 1
+                If p1win > p2win Then
+                    highScore = "Player 1"
+                ElseIf p1win = p2win Then
+                    highScore = "Draw"
+                Else
+                    highScore = "Player 2"
+                End If
+                playAgain("Player 1 Win!" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
             ElseIf cekDraw() Then
-                playAgain("Draw" & vbCrLf & "Play again?")
+                playAgain("Draw" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
             End If
 
         ElseIf statusPemain = "P2" Then
@@ -32,26 +48,45 @@ Public Class frmMain
             lblStatus.Text = "Giliran P1"
             Panel1.BackColor = Color.LimeGreen
             If cekWin("O") Then
-                playAgain("Player 2 Win!" & vbCrLf & "Play again?")
+                p2win += 1
+                If p1win > p2win Then
+                    highScore = "Player 1"
+                ElseIf p1win = p2win Then
+                    highScore = "Draw"
+                Else
+                    highScore = "Player 2"
+                End If
+                playAgain("Player 2 Win!" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
+
             ElseIf cekDraw() Then
-                playAgain("Draw" & vbCrLf & "Play again?")
+                playAgain("Draw" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
             End If
         End If
 
         disableBtn()
+
+        If role = "Host" And cekPlayAgain = True Then
+            enableBtn()
+            cekPlayAgain = False
+        End If
+        If role = "Client" And cekPlayAgain = True Then
+            disableBtn()
+            cekPlayAgain = False
+        End If
     End Sub
     Private Sub JoinOrHostGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles JoinOrHostGameToolStripMenuItem.Click
         frmSetting.Show()
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'disableBtn()
         Dim thdUDPServer = New Thread(New ThreadStart(AddressOf serverThread))
         thdUDPServer.Start()
-
+        'MsgBox("Send port : " & sendPort & vbCrLf & "Receive Port : " & receivePort)
         If connect = True Then
             lblStatus.Text = "Giliran Lawan"
             Panel1.BackColor = Color.Red
-            'disableBtn()
+            disableBtn()
         End If
     End Sub
 
@@ -64,7 +99,7 @@ Public Class frmMain
     End Sub
 
     Public Sub serverThread() 'BUAT RECIEVE
-        Dim udpClient As New UdpClient(CInt(portConnect))
+        Dim udpClient As New UdpClient(CInt(receivePort))
         While True
             Dim RemoteIpEndPoint As New IPEndPoint(IPAddress.Any, 0)
             Dim receiveBytes As Byte()
@@ -90,18 +125,27 @@ Public Class frmMain
                 Case "btn9"
                     isi(btn9)
                 Case Else
-                    ipConnect = returnData
-                    enableBtn()
+                    'ipConnect = returnData
+                    'enableBtn()
+
             End Select
-            enableBtn()
-            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
-           returnData.ToString())
+            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" & returnData.ToString())
+            If cekPlayAgain = True And role = "client" Then
+                disableBtn()
+                MsgBox(role & " disabled")
+                cekPlayAgain = False
+                'enablebtn()
+                'msgbox(role & " enabled")
+                'End If
+            ElseIf cekPlayAgain = False Then
+                enableBtn()
+            End If
         End While
     End Sub
 
     Private Sub sendButton(btn As String) 'BUAT SEND
         Dim udpClient As New Sockets.UdpClient
-        udpClient.Connect(IPAddress.Parse(ipConnect), Val(portConnect))
+        udpClient.Connect(IPAddress.Parse("127.0.0.1"), Val(sendPort))
         Dim sendBytes As Byte()
         sendBytes = Encoding.ASCII.GetBytes(btn)
         udpClient.Send(sendBytes, sendBytes.Length)
@@ -182,6 +226,9 @@ Public Class frmMain
         ElseIf result = DialogResult.Yes Then
             clear()
             statusPemain = "P1"
+            lblStatus.Text = "Giliran P1"
+            Panel1.BackColor = Color.LimeGreen
+            cekPlayAgain = True
         End If
     End Sub
 
