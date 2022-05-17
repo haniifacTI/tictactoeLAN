@@ -11,8 +11,10 @@ Public Class frmSetting
 
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
         Dim udpClient As New Sockets.UdpClient
-        Dim port As Integer = 8080
-        udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
+        'Dim port As Integer = 8080
+        Dim port As Integer = txtPort.Text
+        'udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
+        udpClient.Connect(txtIp.Text, port)
         Dim sendBytes As Byte()
         sendBytes = Encoding.ASCII.GetBytes(GetIPv4Address.ToString)
         udpClient.Send(sendBytes, sendBytes.Length)

@@ -9,7 +9,8 @@ Public Class frmMain
     Public connect As Boolean = False
     'ip client / P2
     Public ipConnect As String
-    Public portConnect As String = "8080"
+    Public portConnect As String
+    'Public portConnect As String = "8080"
 
     Sub isi(btn As Button)
         If btn.Text <> "" Then Exit Sub
@@ -18,6 +19,7 @@ Public Class frmMain
             btn.Text = "X"
             statusPemain = "P2"
             lblStatus.Text = "Giliran P2"
+            Panel1.BackColor = Color.Red
             If cekWin("X") Then
                 playAgain("Player 1 Win!" & vbCrLf & "Play again?")
             ElseIf cekDraw() Then
@@ -89,6 +91,7 @@ Public Class frmMain
                     isi(btn9)
                 Case Else
                     ipConnect = returnData
+                    enableBtn()
             End Select
             enableBtn()
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" &
