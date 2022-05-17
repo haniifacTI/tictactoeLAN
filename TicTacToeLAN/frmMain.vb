@@ -20,6 +20,8 @@ Public Class frmMain
     Dim p1win As Integer = 0
     Dim p2win As Integer = 0
     Dim highScore As String
+    Dim reset As Boolean = False
+
     Sub isi(btn As Button)
         If btn.Text <> "" Then Exit Sub
 
@@ -57,7 +59,7 @@ Public Class frmMain
                     highScore = "Player 2"
                 End If
                 playAgain("Player 2 Win!" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
-
+                reset = True
             ElseIf cekDraw() Then
                 playAgain("Draw" & vbCrLf & "High score : " & highScore & vbCrLf & "Play again?")
             End If
@@ -71,6 +73,8 @@ Public Class frmMain
         End If
         If role = "Client" And cekPlayAgain = True Then
             disableBtn()
+            MsgBox("Masuk")
+            reset = False
             cekPlayAgain = False
         End If
     End Sub
@@ -79,14 +83,13 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'disableBtn()
+        disableBtn()
         Dim thdUDPServer = New Thread(New ThreadStart(AddressOf serverThread))
         thdUDPServer.Start()
-        'MsgBox("Send port : " & sendPort & vbCrLf & "Receive Port : " & receivePort)
         If connect = True Then
             lblStatus.Text = "Giliran Lawan"
             Panel1.BackColor = Color.Red
-            disableBtn()
+            'disableBtn()
         End If
     End Sub
 
@@ -126,19 +129,18 @@ Public Class frmMain
                     isi(btn9)
                 Case Else
                     'ipConnect = returnData
-                    'enableBtn()
+                    enableBtn()
 
             End Select
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" & returnData.ToString())
-            If cekPlayAgain = True And role = "client" Then
+            If cekPlayAgain = True And role = "Client" Then
                 disableBtn()
-                MsgBox(role & " disabled")
+                'MsgBox(role & " disabled")
                 cekPlayAgain = False
-                'enablebtn()
-                'msgbox(role & " enabled")
-                'End If
-            ElseIf cekPlayAgain = False Then
+            ElseIf cekPlayAgain = False And reset = False Then
                 enableBtn()
+            Else
+                reset = False
             End If
         End While
     End Sub
