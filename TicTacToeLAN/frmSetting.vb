@@ -3,7 +3,6 @@ Imports System.Net.Sockets
 Imports System.Text
 Public Class frmSetting
     Dim frmMain As New frmMain
-
     Private Sub btnHost_Click(sender As Object, e As EventArgs) Handles btnHost.Click
         frmMain.sendPort = txtSendPortHost.Text
         frmMain.receivePort = txtReceivePortHost.Text
@@ -22,8 +21,7 @@ Public Class frmSetting
         sendBytes = Encoding.ASCII.GetBytes(GetIPv4Address.ToString)
         udpClient.Send(sendBytes, sendBytes.Length)
         frmMain.connect = True
-        'frmMain.ipConnect = txtIp.Text
-        'frmMain.portConnect = txtRemotePortCon.Tex
+        frmMain.ipConnect = txtIp.Text
         frmMain.sendPort = txtSendPortCon.Text
         frmMain.receivePort = txtReceivePortCon.Text
         frmMain.role = "Client"

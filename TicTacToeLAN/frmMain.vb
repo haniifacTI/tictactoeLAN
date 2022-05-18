@@ -9,7 +9,7 @@ Public Class frmMain
     Public connect As Boolean = False
 
     'ip client / P2
-    'Public ipConnect As String = "127.0.0.1"
+    Public ipConnect As String = "127.0.0.1"
     'Public portConnect As String
     'Public portConnect As String = "8080"
 
@@ -73,7 +73,7 @@ Public Class frmMain
         End If
         If role = "Client" And cekPlayAgain = True Then
             disableBtn()
-            MsgBox("Masuk")
+            'MsgBox("Masuk")
             reset = False
             cekPlayAgain = False
         End If
@@ -128,9 +128,8 @@ Public Class frmMain
                 Case "btn9"
                     isi(btn9)
                 Case Else
-                    'ipConnect = returnData
+                    ipConnect = returnData
                     enableBtn()
-
             End Select
             UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" & returnData.ToString())
             If cekPlayAgain = True And role = "Client" Then
@@ -147,7 +146,7 @@ Public Class frmMain
 
     Private Sub sendButton(btn As String) 'BUAT SEND
         Dim udpClient As New Sockets.UdpClient
-        udpClient.Connect(IPAddress.Parse("127.0.0.1"), Val(sendPort))
+        udpClient.Connect(IPAddress.Parse(ipConnect), Val(sendPort))
         Dim sendBytes As Byte()
         sendBytes = Encoding.ASCII.GetBytes(btn)
         udpClient.Send(sendBytes, sendBytes.Length)
