@@ -92,10 +92,10 @@ Partial Class frmSetting
         '
         'btnHost
         '
-        Me.btnHost.Location = New System.Drawing.Point(303, 43)
+        Me.btnHost.Location = New System.Drawing.Point(303, 53)
         Me.btnHost.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnHost.Name = "btnHost"
-        Me.btnHost.Size = New System.Drawing.Size(86, 37)
+        Me.btnHost.Size = New System.Drawing.Size(86, 27)
         Me.btnHost.TabIndex = 5
         Me.btnHost.Text = "Host Game"
         Me.btnHost.UseVisualStyleBackColor = True

@@ -4,30 +4,38 @@ Imports System.Text
 Public Class frmSetting
     Dim frmMain As New frmMain
     Private Sub btnHost_Click(sender As Object, e As EventArgs) Handles btnHost.Click
-        frmMain.sendPort = txtSendPortHost.Text
-        frmMain.receivePort = txtReceivePortHost.Text
-        frmMain.role = "Host"
-        Me.Hide()
-        frmMain.ShowDialog()
+        If txtSendPortHost.Text = "" Or txtReceivePortHost.Text = "" Then
+            MsgBox("Send Port dan Receive Port wajib diisi!",, "Warning")
+        Else
+            frmMain.sendPort = txtSendPortHost.Text
+            frmMain.receivePort = txtReceivePortHost.Text
+            frmMain.role = "Host"
+            Me.Hide()
+            frmMain.ShowDialog()
+        End If
     End Sub
 
     Private Sub btnConnect_Click(sender As Object, e As EventArgs) Handles btnConnect.Click
-        Dim udpClient As New Sockets.UdpClient
-        Dim port As Integer = txtSendPortCon.Text
-        'Dim port As Integer = txtPort.Text
-        udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
-        'udpClient.Connect(txtIp.Text, port)
-        Dim sendBytes As Byte()
-        sendBytes = Encoding.ASCII.GetBytes(GetIPv4Address.ToString)
-        udpClient.Send(sendBytes, sendBytes.Length)
-        frmMain.connect = True
-        frmMain.ipConnect = txtIp.Text
-        frmMain.sendPort = txtSendPortCon.Text
-        frmMain.receivePort = txtReceivePortCon.Text
-        frmMain.role = "Client"
+        If txtSendPortCon.Text = "" Or txtReceivePortCon.Text = "" Or txtIp.Text = "" Then
+            MsgBox("IP Port dan Send Port dan Receive Port wajib diisi!",, "Warning")
+        Else
+            Dim udpClient As New Sockets.UdpClient
+            Dim port As Integer = txtSendPortCon.Text
+            'Dim port As Integer = txtPort.Text
+            'udpClient.Connect(IPAddress.Parse(txtIp.Text), port)
+            udpClient.Connect(txtIp.Text, port)
+            Dim sendBytes As Byte()
+            sendBytes = Encoding.ASCII.GetBytes(GetIPv4Address.ToString)
+            udpClient.Send(sendBytes, sendBytes.Length)
+            frmMain.connect = True
+            frmMain.ipConnect = txtIp.Text
+            frmMain.sendPort = txtSendPortCon.Text
+            frmMain.receivePort = txtReceivePortCon.Text
+            frmMain.role = "Client"
 
-        Me.Hide()
-        frmMain.ShowDialog()
+            Me.Hide()
+            frmMain.ShowDialog()
+        End If
     End Sub
 
     Private Sub frmSetting_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

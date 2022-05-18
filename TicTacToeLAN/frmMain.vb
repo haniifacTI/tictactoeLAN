@@ -73,7 +73,6 @@ Public Class frmMain
         End If
         If role = "Client" And cekPlayAgain = True Then
             disableBtn()
-            'MsgBox("Masuk")
             reset = False
             cekPlayAgain = False
         End If
@@ -289,5 +288,9 @@ Public Class frmMain
 
     Private Sub frmMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         End
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MsgBox("This game created by " & vbCrLf & "Richard Lois - 71200594" & vbCrLf & "Haniif Ahmad - 71200660",, "About")
     End Sub
 End Class
