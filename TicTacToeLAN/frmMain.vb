@@ -86,19 +86,19 @@ Public Class frmMain
         Dim thdUDPServer = New Thread(New ThreadStart(AddressOf serverThread))
         thdUDPServer.Start()
         If connect = True Then
-            lblStatus.Text = "Giliran Lawan"
-            Panel1.BackColor = Color.Red
+            lblStatus.Text = "Giliran P1"
+            Panel1.BackColor = Color.LimeGreen
             'disableBtn()
         End If
     End Sub
 
-    Private Sub UpdateListBox(ByVal teks As String)
-        If Me.InvokeRequired Then
-            Dim args() As String = {teks}
-            Me.Invoke(New Action(Of String)(AddressOf UpdateListBox), args)
-            lbHasil.Items.Add(teks)
-        End If
-    End Sub
+    'Private Sub UpdateListBox(ByVal teks As String)
+    '    If Me.InvokeRequired Then
+    '        Dim args() As String = {teks}
+    '        Me.Invoke(New Action(Of String)(AddressOf UpdateListBox), args)
+    '        lbHasil.Items.Add(teks)
+    '    End If
+    'End Sub
 
     Public Sub serverThread() 'BUAT RECIEVE
         Dim udpClient As New UdpClient(CInt(receivePort))
@@ -130,7 +130,7 @@ Public Class frmMain
                     ipConnect = returnData
                     enableBtn()
             End Select
-            UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" & returnData.ToString())
+            'UpdateListBox("From " & RemoteIpEndPoint.Address.ToString() + ":" & returnData.ToString())
             If cekPlayAgain = True And role = "Client" Then
                 disableBtn()
                 'MsgBox(role & " disabled")

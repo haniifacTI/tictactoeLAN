@@ -26,6 +26,7 @@ Partial Class frmMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SettingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JoinOrHostGameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btn1 = New System.Windows.Forms.Button()
         Me.btn2 = New System.Windows.Forms.Button()
         Me.btn3 = New System.Windows.Forms.Button()
@@ -37,8 +38,6 @@ Partial Class frmMain
         Me.btn9 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblStatus = New System.Windows.Forms.Label()
-        Me.lbHasil = New System.Windows.Forms.ListBox()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -50,7 +49,7 @@ Partial Class frmMain
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 3, 0, 3)
-        Me.MenuStrip1.Size = New System.Drawing.Size(731, 30)
+        Me.MenuStrip1.Size = New System.Drawing.Size(295, 30)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -66,6 +65,12 @@ Partial Class frmMain
         Me.JoinOrHostGameToolStripMenuItem.Name = "JoinOrHostGameToolStripMenuItem"
         Me.JoinOrHostGameToolStripMenuItem.Size = New System.Drawing.Size(214, 26)
         Me.JoinOrHostGameToolStripMenuItem.Text = "Join or Host Game"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(64, 24)
+        Me.AboutToolStripMenuItem.Text = "About"
         '
         'btn1
         '
@@ -166,40 +171,25 @@ Partial Class frmMain
         Me.Panel1.Location = New System.Drawing.Point(0, 30)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(731, 45)
+        Me.Panel1.Size = New System.Drawing.Size(295, 45)
         Me.Panel1.TabIndex = 10
         '
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblStatus.Location = New System.Drawing.Point(87, 8)
+        Me.lblStatus.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.lblStatus.ForeColor = System.Drawing.Color.White
+        Me.lblStatus.Location = New System.Drawing.Point(60, 0)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(109, 28)
+        Me.lblStatus.Size = New System.Drawing.Size(165, 41)
         Me.lblStatus.TabIndex = 0
-        Me.lblStatus.Text = "Giliran Mu!"
-        '
-        'lbHasil
-        '
-        Me.lbHasil.FormattingEnabled = True
-        Me.lbHasil.ItemHeight = 20
-        Me.lbHasil.Location = New System.Drawing.Point(295, 96)
-        Me.lbHasil.Name = "lbHasil"
-        Me.lbHasil.Size = New System.Drawing.Size(424, 284)
-        Me.lbHasil.TabIndex = 11
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(64, 24)
-        Me.AboutToolStripMenuItem.Text = "About"
+        Me.lblStatus.Text = "Giliran P1!"
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(731, 401)
-        Me.Controls.Add(Me.lbHasil)
+        Me.ClientSize = New System.Drawing.Size(295, 396)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.btn9)
         Me.Controls.Add(Me.btn8)
@@ -214,6 +204,7 @@ Partial Class frmMain
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.MaximizeBox = False
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Tic Tac Toe LAN"
@@ -240,6 +231,5 @@ Partial Class frmMain
     Friend WithEvents btn9 As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents lblStatus As Label
-    Friend WithEvents lbHasil As ListBox
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
 End Class
